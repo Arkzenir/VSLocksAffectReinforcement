@@ -1,0 +1,42 @@
+<Project>
+  <!--
+    Directory.Build.props - mod identity and shared compiler settings.
+    MSBuild imports this automatically before every .csproj in this folder.
+    Edit ModName / ModVersion / Description / Side here; modinfo.json is
+    generated from these values at build time.
+  -->
+
+  <PropertyGroup>
+    <ModName>LocksAffectReinforcement</ModName>
+    <ModType>code</ModType>
+    <ModVersion>1.0.0</ModVersion>
+    <ModId>locksaffectreinforcement</ModId>
+    <Description>A Vintage Story mod.</Description>
+    <Side>universal</Side>
+    <RequiredOnClient>true</RequiredOnClient>
+    <RequiredOnServer>true</RequiredOnServer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ModInfoAuthors Include="Arkzenir" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectDir>$(MSBuildProjectDirectory)</ProjectDir>
+    <AssetsDir>$(ProjectDir)/resources/assets</AssetsDir>
+    <!-- Drop extra DLLs into external/ and they are referenced automatically -->
+    <ExternalLibDir>$(ProjectDir)/external</ExternalLibDir>
+  </PropertyGroup>
+
+  <!-- Machine-specific path overrides (gitignored) -->
+  <Import Project="Properties/localSettings.props"
+          Condition="Exists('Properties/localSettings.props')" />
+
+</Project>
